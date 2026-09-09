@@ -285,11 +285,11 @@ class AppDelegate(NSObject):
     
     def _request_permissions(self):
         """Request mic permission from macOS if not already granted."""
-        from AVFoundation import AVCaptureDevice, AVMediaTypeAudio, AVAuthorizationStatusAuthorized, AVAuthorizationStatusNotDetermined
+        from AVFoundation import AVCaptureDevice, AVMediaTypeAudio
         status = AVCaptureDevice.authorizationStatusForMediaType_(AVMediaTypeAudio)
         logger.info(f"Microphone authorization status: {status}")
-        # 0 = NotDetermined — request it
-        if status == 0:
+        # Always request if not explicitly authorized (0=NotDetermined, 2=Denied, 3=Restricted)
+        if status != 3:  # 3 = Authorized
             AVCaptureDevice.requestAccessForMediaType_completionHandler_(
                 AVMediaTypeAudio,
                 lambda granted: logger.info(f"Mic permission granted: {granted}")

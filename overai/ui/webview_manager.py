@@ -1055,20 +1055,29 @@ class WebViewManager(NSObject):
             get_audio_capture().stop()
             logger.info("Audio capture stopped")
 
-    # MARK: - WKUIDelegate - silently grant mic without any popup or orange dot
+    # MARK: - WKUIDelegate - grant mic permission properly
 
     def webView_requestMediaCapturePermissionForOrigin_initiatedByFrame_type_decisionHandler_(
         self, webview, origin, frame, capture_type, decision_handler
     ):
-        """Grant mic/camera silently - no macOS permission popup, no orange indicator."""
-        try:
-            # WKPermissionDecisionGrant = 1
-            decision_handler(1)
-        except Exception:
+        """Grant mic permission — macOS handles the one-time system popup."""
+        from AVFoundation import AVCaptureDevice, AVMediaTypeAudio
+        status = AVCaptureDevice.authorizationStatusForMediaType_(AVMediaTypeAudio)
+        if status == 3:  # Already authorized
             try:
-                decision_handler(WKPermissionDecision.grant)
+                decision_handler(1)  # WKPermissionDecisionGrant
             except Exception as e:
                 logger.debug(f"Could not grant media permission: {e}")
+        else:
+            # Request from macOS first, then grant to WebView
+            def on_granted(granted):
+                try:
+                    decision_handler(1 if granted else 2)
+                except Exception as e:
+                    logger.debug(f"Permission handler error: {e}")
+            AVCaptureDevice.requestAccessForMediaType_completionHandler_(
+                AVMediaTypeAudio, on_granted
+            )
 
     def userContentController_didReceiveScriptMessage_(self, controller, message):
         """Handle messages from JavaScript."""
