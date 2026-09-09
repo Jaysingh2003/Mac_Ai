@@ -38,7 +38,7 @@ Why choose? Use the best model for the task.
 ## 📥 Installation
 
 ### Option 1: DMG Installer (Recommended)
-1. **[Download OverAI-Installer.dmg](https://github.com/Jaysingh2003/Mac_Ai/releases/download/v2.0.1/OverAI-Installer.dmg)** (v2.0.1)
+1. **[Download OverAI-Installer.dmg](https://github.com/Jaysingh2003/Mac_Ai/releases/download/v2.0.0/OverAI-Installer.dmg)** (v2.0.0)
 2. Drag **OverAI** to your **Applications** folder.
 3. Open it via Spotlight (`Cmd + Space` -> OverAI).
 
