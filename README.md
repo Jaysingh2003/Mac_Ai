@@ -1,8 +1,5 @@
-<p align="center">
-  <img src="overai/logo/logo.png" width="120" alt="OverAI Logo"/>
-</p>
 
-<h1 align="center">OverAI</h1>
+<h1 align="center">Mac</h1>
 <p align="center"><strong>The Seamless AI Bridge for macOS</strong></p>
 
 <p align="center">
@@ -12,22 +9,10 @@
   <a href="#development">Development</a>
 </p>
 
-<p align="center">
-  <img src="https://img.shields.io/badge/macOS-12.0%2B-000000?style=for-the-badge&logo=apple&logoColor=white" />
-  <img src="https://img.shields.io/badge/Architecture-Universal-blue?style=for-the-badge" />
-  <a href="https://github.com/Jaysingh2003/Mac_Ai/releases/download/v2.0.0/OverAI-Installer.dmg"><img src="https://img.shields.io/badge/Download-OverAI_v2.0-success?style=for-the-badge&logo=apple" /></a>
-  <img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" />
-</p>
 
 ---
 
-**OverAI** transforms your Mac into an intelligent workspace. Access ChatGPT, Claude, Gemini, or your own completely offline Local LLMs instantly with a single keystroke. 
 
-Floating gracefully above your workflow, it feels like a native part of macOS—appearing exactly when you need it, and disappearing when you don't.
-
----
-
-## ✨ Features
 
 ### ⚡️ Instant Intelligence
 Toggle your assistant with **`Command + G`** from anywhere. Switching tabs breaks flow; OverAI keeps you in the zone.
