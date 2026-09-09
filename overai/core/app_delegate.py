@@ -284,15 +284,16 @@ class AppDelegate(NSObject):
 
     
     def _request_permissions(self):
-        """Check mic permission status silently - no popup."""
-        is_trusted = AXIsProcessTrustedWithOptions(None)
-        logger.info(f"Accessibility trusted: {is_trusted}")
-        
-        # Check mic status silently without triggering a popup
-        # The WKWebView UIDelegate handles mic grants inline when needed
-        from AVFoundation import AVCaptureDevice, AVMediaTypeAudio, AVAuthorizationStatusAuthorized
+        """Request mic permission from macOS if not already granted."""
+        from AVFoundation import AVCaptureDevice, AVMediaTypeAudio, AVAuthorizationStatusAuthorized, AVAuthorizationStatusNotDetermined
         status = AVCaptureDevice.authorizationStatusForMediaType_(AVMediaTypeAudio)
         logger.info(f"Microphone authorization status: {status}")
+        # 0 = NotDetermined — request it
+        if status == 0:
+            AVCaptureDevice.requestAccessForMediaType_completionHandler_(
+                AVMediaTypeAudio,
+                lambda granted: logger.info(f"Mic permission granted: {granted}")
+            )
     
     # MARK: - Action Handlers
     

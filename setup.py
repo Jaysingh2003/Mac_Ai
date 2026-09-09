@@ -52,7 +52,7 @@ OPTIONS = {
         "CFBundleDisplayName": "OverAI",
         "CFBundleVersion": version,
         "CFBundleShortVersionString": version,
-        "NSHumanReadableCopyright": "© 2024 Sai Praveen",
+        "NSHumanReadableCopyright": "© 2024 Jay Singh",
         # Permissions
         "NSMicrophoneUsageDescription": "OverAI needs microphone access for voice input to AI services.",
         "NSAppleEventsUsageDescription": "OverAI needs accessibility permission for global hotkeys.",
@@ -74,7 +74,7 @@ setup(
     description="AI Overlay for macOS",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    author="Sai Praveen",
+    author="Jay Singh",
     packages=find_packages(),
     include_package_data=True,
     package_data={

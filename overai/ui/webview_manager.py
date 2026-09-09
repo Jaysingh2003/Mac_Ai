@@ -804,11 +804,10 @@ class WebViewManager(NSObject):
         except Exception as e:
             logger.debug(f"Could not set allowUniversalAccessFromFileURLs: {e}")
 
-        # Pre-grant mic access silently - no popup, no orange dot
+        # Disable built-in dictation to prevent "Enable mic to dictate" popup
         try:
-            config.setValue_forKey_(True, "allowsAirPlayForMediaPlayback")
-            # Grant microphone without prompting
-            config.setValue_forKey_(2, "mediaCaptureRequiresSecureConnection")  # disable secure requirement
+            config.setValue_forKey_(False, "allowsInlinePredictions")
+            prefs.setValue_forKey_(False, "isSpeechRecognitionEnabled")
         except Exception:
             pass
 
